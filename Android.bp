@@ -22,10 +22,10 @@ rust_library {
 
 // dependent_library ["feature_list"]
 //   itoa-0.4.6
-//   proc-macro2-1.0.19 "default,proc-macro"
+//   proc-macro2-1.0.24 "default,proc-macro"
 //   quote-1.0.7 "default,proc-macro"
 //   ryu-1.0.5
-//   serde-1.0.115 "default,derive,serde_derive,std"
-//   serde_derive-1.0.115 "default"
-//   syn-1.0.38 "clone-impls,default,derive,full,parsing,printing,proc-macro,quote,visit"
+//   serde-1.0.117 "default,derive,serde_derive,std"
+//   serde_derive-1.0.117 "default"
+//   syn-1.0.48 "clone-impls,default,derive,parsing,printing,proc-macro,quote,visit"
 //   unicode-xid-0.2.1 "default"
