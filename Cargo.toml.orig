@@ -1,6 +1,6 @@
 [package]
 name = "serde_json"
-version = "1.0.57" # remember to update html_root_url
+version = "1.0.61" # remember to update html_root_url
 authors = ["Erick Tryzelaar <erick.tryzelaar@gmail.com>", "David Tolnay <dtolnay@gmail.com>"]
 license = "MIT OR Apache-2.0"
 description = "A JSON serialization file format"
@@ -14,12 +14,12 @@ edition = "2018"
 
 [dependencies]
 serde = { version = "1.0.100", default-features = false }
-indexmap = { version = "1.2", optional = true }
+indexmap = { version = "1.5", optional = true }
 itoa = { version = "0.4.3", default-features = false }
 ryu = "1.0"
 
 [dev-dependencies]
-automod = "0.1"
+automod = "1.0"
 rustversion = "1.0"
 serde_bytes = "0.11"
 serde_derive = "1.0"
