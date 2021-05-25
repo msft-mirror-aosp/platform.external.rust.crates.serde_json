@@ -2,7 +2,22 @@
 {
   "presubmit": [
     {
+      "name": "ZipFuseTest"
+    },
+    {
+      "name": "authfs_device_test_src_lib"
+    },
+    {
+      "name": "either_device_test_src_lib"
+    },
+    {
       "name": "url_device_test_src_lib"
+    },
+    {
+      "name": "url_device_test_tests_data"
+    },
+    {
+      "name": "url_device_test_tests_unit"
     }
   ]
 }
