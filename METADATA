@@ -7,13 +7,13 @@ third_party {
   }
   url {
     type: ARCHIVE
-    value: "https://static.crates.io/crates/serde_json/serde_json-1.0.64.crate"
+    value: "https://static.crates.io/crates/serde_json/serde_json-1.0.66.crate"
   }
-  version: "1.0.64"
+  version: "1.0.66"
   license_type: NOTICE
   last_upgrade_date {
     year: 2021
-    month: 5
-    day: 19
+    month: 8
+    day: 9
   }
 }
