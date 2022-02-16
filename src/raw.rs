@@ -109,7 +109,6 @@ use serde::ser::{Serialize, SerializeStruct, Serializer};
 /// }
 /// ```
 #[repr(C)]
-#[cfg_attr(docsrs, doc(cfg(feature = "raw_value")))]
 pub struct RawValue {
     json: str,
 }
@@ -268,7 +267,6 @@ impl RawValue {
 ///
 /// println!("{}", serde_json::value::to_raw_value(&map).unwrap_err());
 /// ```
-#[cfg_attr(docsrs, doc(cfg(feature = "raw_value")))]
 pub fn to_raw_value<T>(value: &T) -> Result<Box<RawValue>, Error>
 where
     T: Serialize,
