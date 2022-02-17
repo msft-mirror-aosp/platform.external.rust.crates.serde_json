@@ -140,6 +140,7 @@ where
 
 /// JSON input source that reads from a std::io input stream.
 #[cfg(feature = "std")]
+#[cfg_attr(docsrs, doc(cfg(feature = "std")))]
 pub struct IoRead<R>
 where
     R: io::Read,
@@ -377,7 +378,10 @@ where
         V: Visitor<'de>,
     {
         let raw = self.raw_buffer.take().unwrap();
-        let raw = String::from_utf8(raw).unwrap();
+        let raw = match String::from_utf8(raw) {
+            Ok(raw) => raw,
+            Err(_) => return error(self, ErrorCode::InvalidUnicodeCodePoint),
+        };
         visitor.visit_map(OwnedRawDeserializer {
             raw_value: Some(raw),
         })
@@ -587,7 +591,10 @@ impl<'a> Read<'a> for SliceRead<'a> {
         V: Visitor<'a>,
     {
         let raw = &self.slice[self.raw_buffering_start_index..self.index];
-        let raw = str::from_utf8(raw).unwrap();
+        let raw = match str::from_utf8(raw) {
+            Ok(raw) => raw,
+            Err(_) => return error(self, ErrorCode::InvalidUnicodeCodePoint),
+        };
         visitor.visit_map(BorrowedRawDeserializer {
             raw_value: Some(raw),
         })
@@ -710,7 +717,7 @@ where
     }
 
     fn discard(&mut self) {
-        R::discard(self)
+        R::discard(self);
     }
 
     fn position(&self) -> Position {
@@ -760,7 +767,7 @@ where
     const should_early_return_if_failed: bool = R::should_early_return_if_failed;
 
     fn set_failed(&mut self, failed: &mut bool) {
-        R::set_failed(self, failed)
+        R::set_failed(self, failed);
     }
 }
 
