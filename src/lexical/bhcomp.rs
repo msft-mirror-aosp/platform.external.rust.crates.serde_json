@@ -12,7 +12,7 @@ use super::float::*;
 use super::math::*;
 use super::num::*;
 use super::rounding::*;
-use core::{cmp, mem};
+use crate::lib::{cmp, mem};
 
 // MANTISSA
 

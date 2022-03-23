@@ -5,7 +5,7 @@
 use super::float::ExtendedFloat;
 use super::num::*;
 use super::shift::*;
-use core::mem;
+use crate::lib::mem;
 
 // MASKS
 
