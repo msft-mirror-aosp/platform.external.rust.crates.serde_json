@@ -1,14 +1,9 @@
 //! When serializing or deserializing JSON goes wrong.
 
 use crate::io;
-use alloc::boxed::Box;
-use alloc::string::{String, ToString};
-use core::fmt::{self, Debug, Display};
-use core::result;
-use core::str::FromStr;
+use crate::lib::str::FromStr;
+use crate::lib::*;
 use serde::{de, ser};
-#[cfg(feature = "std")]
-use std::error;
 
 /// This type represents all possible errors that can occur when serializing or
 /// deserializing JSON data.
@@ -239,7 +234,7 @@ pub(crate) enum ErrorCode {
     /// JSON has non-whitespace trailing characters after the value.
     TrailingCharacters,
 
-    /// Unexpected end of hex escape.
+    /// Unexpected end of hex excape.
     UnexpectedEndOfHexEscape,
 
     /// Encountered nesting of JSON maps and arrays more than 128 layers deep.
