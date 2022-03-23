@@ -3,7 +3,7 @@
 //! Big integer type definition.
 
 use super::math::*;
-use alloc::vec::Vec;
+use crate::lib::Vec;
 
 /// Storage for a big integer type.
 #[derive(Clone, PartialEq, Eq)]
