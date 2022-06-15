@@ -1,8 +1,6 @@
 use crate::de::ParserNumber;
 use crate::error::Error;
-use core::fmt::{self, Debug, Display};
-#[cfg(not(feature = "arbitrary_precision"))]
-use core::hash::{Hash, Hasher};
+use crate::lib::*;
 use serde::de::{self, Unexpected, Visitor};
 use serde::{
     forward_to_deserialize_any, serde_if_integer128, Deserialize, Deserializer, Serialize,
@@ -18,13 +16,13 @@ use serde::de::{IntoDeserializer, MapAccess};
 pub(crate) const TOKEN: &str = "$serde_json::private::Number";
 
 /// Represents a JSON number, whether integer or floating point.
-#[derive(Clone, PartialEq, Eq, Hash)]
+#[derive(Clone, Eq, PartialEq)]
 pub struct Number {
     n: N,
 }
 
 #[cfg(not(feature = "arbitrary_precision"))]
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 enum N {
     PosInt(u64),
     /// Always less than zero.
@@ -33,41 +31,9 @@ enum N {
     Float(f64),
 }
 
-#[cfg(not(feature = "arbitrary_precision"))]
-impl PartialEq for N {
-    fn eq(&self, other: &Self) -> bool {
-        match (self, other) {
-            (N::PosInt(a), N::PosInt(b)) => a == b,
-            (N::NegInt(a), N::NegInt(b)) => a == b,
-            (N::Float(a), N::Float(b)) => a == b,
-            _ => false,
-        }
-    }
-}
-
 // Implementing Eq is fine since any float values are always finite.
 #[cfg(not(feature = "arbitrary_precision"))]
 impl Eq for N {}
-
-#[cfg(not(feature = "arbitrary_precision"))]
-impl Hash for N {
-    fn hash<H: Hasher>(&self, h: &mut H) {
-        match *self {
-            N::PosInt(i) => i.hash(h),
-            N::NegInt(i) => i.hash(h),
-            N::Float(f) => {
-                if f == 0.0f64 {
-                    // There are 2 zero representations, +0 and -0, which
-                    // compare equal but have different bits. We use the +0 hash
-                    // for both so that hash(+0) == hash(-0).
-                    0.0f64.to_bits().hash(h);
-                } else {
-                    f.to_bits().hash(h);
-                }
-            }
-        }
-    }
-}
 
 #[cfg(feature = "arbitrary_precision")]
 type N = String;
@@ -164,7 +130,7 @@ impl Number {
         {
             for c in self.n.chars() {
                 if c == '.' || c == 'e' || c == 'E' {
-                    return self.n.parse::<f64>().ok().map_or(false, f64::is_finite);
+                    return self.n.parse::<f64>().ok().map_or(false, |f| f.is_finite());
                 }
             }
             false
@@ -288,7 +254,7 @@ impl Number {
     }
 }
 
-impl Display for Number {
+impl fmt::Display for Number {
     #[cfg(not(feature = "arbitrary_precision"))]
     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
         match self.n {
