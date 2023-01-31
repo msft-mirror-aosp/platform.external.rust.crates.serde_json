@@ -24,46 +24,21 @@
     },
     {
       "path": "external/rust/crates/url"
-    }
-  ],
-  "presubmit": [
-    {
-      "name": "ZipFuseTest"
     },
     {
-      "name": "authfs_device_test_src_lib"
+      "path": "packages/modules/Virtualization/authfs"
     },
     {
-      "name": "libpvmfw_avb.integration_test"
+      "path": "packages/modules/Virtualization/microdroid_manager"
     },
     {
-      "name": "microdroid_manager_test"
+      "path": "packages/modules/Virtualization/virtualizationmanager"
     },
     {
-      "name": "virtualizationmanager_device_test"
+      "path": "packages/modules/Virtualization/vm"
     },
     {
-      "name": "vm.test"
-    }
-  ],
-  "presubmit-rust": [
-    {
-      "name": "ZipFuseTest"
-    },
-    {
-      "name": "authfs_device_test_src_lib"
-    },
-    {
-      "name": "libpvmfw_avb.integration_test"
-    },
-    {
-      "name": "microdroid_manager_test"
-    },
-    {
-      "name": "virtualizationmanager_device_test"
-    },
-    {
-      "name": "vm.test"
+      "path": "packages/modules/Virtualization/zipfuse"
     }
   ]
 }
