@@ -116,7 +116,7 @@ impl Index for String {
     }
 }
 
-impl<T> Index for &T
+impl<'a, T> Index for &'a T
 where
     T: ?Sized + Index,
 {
