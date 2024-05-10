@@ -11,13 +11,13 @@ third_party {
   }
   url {
     type: ARCHIVE
-    value: "https://static.crates.io/crates/serde_json/serde_json-1.0.93.crate"
+    value: "https://static.crates.io/crates/serde_json/serde_json-1.0.94.crate"
   }
-  version: "1.0.93"
+  version: "1.0.94"
   license_type: NOTICE
   last_upgrade_date {
     year: 2023
-    month: 2
-    day: 17
+    month: 3
+    day: 20
   }
 }
